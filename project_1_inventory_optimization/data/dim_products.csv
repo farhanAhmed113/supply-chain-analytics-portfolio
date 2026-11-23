@@ -1,0 +1,49 @@
+Product_ID,SKU,Product_Name,Category,Unit_Cost,Unit_Price,Lead_Time_Days,Supplier_ID,Target_Service_Level
+PRD-1001,ELE-1001,Microcontroller Board,Electronics,25,45,14,SUP-106,0.95
+PRD-1002,ELE-1002,OLED Display 0.96in,Electronics,8,18,10,SUP-107,0.95
+PRD-1003,ELE-1003,Power Supply Unit 500W,Electronics,45,80,21,SUP-108,0.95
+PRD-1004,ELE-1004,Li-ion Battery Pack,Electronics,30,60,25,SUP-109,0.95
+PRD-1005,ELE-1005,Capacitor Kit 500pc,Electronics,12,24,7,SUP-110,0.95
+PRD-1006,ELE-1006,SMD Resistor Reel,Electronics,15,30,12,SUP-111,0.95
+PRD-1007,ELE-1007,WiFi IoT Module,Electronics,18,35,15,SUP-112,0.95
+PRD-1008,ELE-1008,High-Speed USB-C Hub,Electronics,22,45,14,SUP-101,0.95
+PRD-1009,ELE-1009,Brushless DC Motor,Electronics,55,95,28,SUP-102,0.95
+PRD-1010,ELE-1010,PCB Blank Boards 10pk,Electronics,14,28,9,SUP-103,0.95
+PRD-1011,ELE-1011,Soldering Station Pro,Electronics,75,130,18,SUP-104,0.95
+PRD-1012,ELE-1012,Heat Sink Aluminum 5pk,Electronics,10,20,8,SUP-105,0.95
+PRD-1013,IND-1013,Pneumatic Valve 1/4in,Industrial,65,120,20,SUP-106,0.95
+PRD-1014,IND-1014,Hydraulic Cylinder 50mm,Industrial,180,320,35,SUP-107,0.95
+PRD-1015,IND-1015,V-Belt Industrial B52,Industrial,20,42,10,SUP-108,0.95
+PRD-1016,IND-1016,Deep Groove Ball Bearing,Industrial,15,32,12,SUP-109,0.95
+PRD-1017,IND-1017,Roller Chain 10ft #40,Industrial,35,70,14,SUP-110,0.95
+PRD-1018,IND-1018,Centrifugal Pump 1HP,Industrial,220,390,40,SUP-111,0.95
+PRD-1019,IND-1019,Pressure Gauge 0-100PSI,Industrial,28,55,10,SUP-112,0.95
+PRD-1020,IND-1020,Steel Flange 2in ANSI,Industrial,45,85,18,SUP-101,0.95
+PRD-1021,IND-1021,Solenoid Valve 24V DC,Industrial,50,95,15,SUP-102,0.95
+PRD-1022,IND-1022,Timing Pulley 40-Tooth,Industrial,18,38,12,SUP-103,0.95
+PRD-1023,IND-1023,Air Filter Regulator 3/8in,Industrial,42,80,14,SUP-104,0.95
+PRD-1024,IND-1024,Industrial Caster Wheel 6in,Industrial,25,52,10,SUP-105,0.95
+PRD-1025,AUT-1025,Ceramic Brake Pads Set,Automotive,40,85,15,SUP-106,0.95
+PRD-1026,AUT-1026,Oil Filter Spin-On,Automotive,6,15,7,SUP-107,0.95
+PRD-1027,AUT-1027,Synthetic Engine Oil 5W30,Automotive,28,52,10,SUP-108,0.95
+PRD-1028,AUT-1028,LED Headlight Bulb Pair,Automotive,35,70,12,SUP-109,0.95
+PRD-1029,AUT-1029,Cabin Air Filter Activated,Automotive,12,26,8,SUP-110,0.95
+PRD-1030,AUT-1030,Alternator 12V 120A,Automotive,140,260,25,SUP-111,0.95
+PRD-1031,AUT-1031,Oxygen Sensor O2 4-Wire,Automotive,45,90,14,SUP-112,0.95
+PRD-1032,AUT-1032,Spark Plug Iridium 4pk,Automotive,22,48,9,SUP-101,0.95
+PRD-1033,AUT-1033,Serpentine Belt 6PK,Automotive,18,38,10,SUP-102,0.95
+PRD-1034,AUT-1034,Radiator Assembly Aluminum,Automotive,110,210,28,SUP-103,0.95
+PRD-1035,AUT-1035,Strut & Shock Absorber,Automotive,95,180,22,SUP-104,0.95
+PRD-1036,AUT-1036,Fuel Pump Module Assy,Automotive,85,165,20,SUP-105,0.95
+PRD-1037,FAS-1037,Hex Bolt Grade 8 M10 100pk,Fasteners & Hardware,18,36,10,SUP-106,0.95
+PRD-1038,FAS-1038,Nylon Lock Nut M10 100pk,Fasteners & Hardware,12,25,8,SUP-107,0.95
+PRD-1039,FAS-1039,Stainless Steel Washer 200pk,Fasteners & Hardware,10,22,7,SUP-108,0.95
+PRD-1040,FAS-1040,Socket Head Cap Screw M8,Fasteners & Hardware,16,32,9,SUP-109,0.95
+PRD-1041,FAS-1041,Threadlocker High Strength 50ml,Fasteners & Hardware,15,30,8,SUP-110,0.95
+PRD-1042,FAS-1042,Spring Pin Assortment 300pc,Fasteners & Hardware,14,28,10,SUP-111,0.95
+PRD-1043,FAS-1043,Blind Rivet Aluminum 500pk,Fasteners & Hardware,20,40,12,SUP-112,0.95
+PRD-1044,FAS-1044,Brass Threaded Insert 100pk,Fasteners & Hardware,16,35,14,SUP-101,0.95
+PRD-1045,FAS-1045,Drywall Anchor Kit 150pc,Fasteners & Hardware,11,24,7,SUP-102,0.95
+PRD-1046,FAS-1046,U-Bolt 3in Galvanized 4pk,Fasteners & Hardware,15,30,10,SUP-103,0.95
+PRD-1047,FAS-1047,Retaining Ring Snap Clip Kit,Fasteners & Hardware,18,38,12,SUP-104,0.95
+PRD-1048,FAS-1048,Toggle Clamp Horizontal 500lb,Fasteners & Hardware,22,45,14,SUP-105,0.95

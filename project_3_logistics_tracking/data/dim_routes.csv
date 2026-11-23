@@ -1,0 +1,13 @@
+Route_ID,Origin,Destination,Distance_Miles,Standard_Transit_Days
+RT-101,"Chicago Hub, IL","Dallas DC, TX",925,2
+RT-102,"Chicago Hub, IL","Atlanta DC, GA",715,2
+RT-103,"Newark Depot, NJ","Charlotte DC, NC",610,1
+RT-104,"Newark Depot, NJ","Chicago Hub, IL",790,2
+RT-105,"Reno Hub, NV","Los Angeles DC, CA",490,1
+RT-106,"Reno Hub, NV","Seattle DC, WA",705,2
+RT-107,"Los Angeles Port, CA","Chicago Hub, IL",2015,4
+RT-108,"Savannah Port, GA","Atlanta DC, GA",250,1
+RT-109,"Houston Port, TX","Dallas DC, TX",240,1
+RT-110,"Chicago Hub, IL","Denver DC, CO",1010,3
+RT-111,"Newark Depot, NJ","Miami DC, FL",1280,3
+RT-112,"Reno Hub, NV","Phoenix DC, AZ",740,2

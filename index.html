@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Analytics Portfolio | Farhan Ahmed</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #1e293b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-amber: #f59e0b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: var(--bg-color); color: var(--text-main); padding: 24px; min-height: 100vh; }
+        
+        .top-navbar { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 16px 24px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 24px; }
+        .logo-area h1 { font-size: 20px; font-weight: 700; color: #fff; }
+        .logo-area p { font-size: 13px; color: var(--text-sub); }
+        .portfolio-badge { background: #065f46; color: #34d399; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 9999px; }
+
+        .tabs-bar { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+        .tab-btn { background: #1e293b; color: var(--text-sub); border: 1px solid #334155; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+        .tab-btn:hover { background: #334155; color: #fff; }
+        .tab-btn.active { background: #2563eb; color: #fff; border-color: #3b82f6; }
+
+        .project-view { display: none; }
+        .project-view.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .kpi-card { background: var(--card-bg); padding: 18px; border-radius: 12px; border: 1px solid #334155; }
+        .kpi-title { font-size: 12px; color: var(--text-sub); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+        .kpi-value { font-size: 26px; font-weight: 700; margin: 8px 0; color: #fff; }
+        .kpi-sub { font-size: 12px; font-weight: 500; }
+
+        .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+        @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
+        .chart-box { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #334155; }
+        .chart-box h3 { font-size: 15px; margin-bottom: 16px; color: #f1f5f9; }
+
+        .table-box { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #334155; overflow-x: auto; }
+        .table-box h3 { font-size: 15px; margin-bottom: 16px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+        th { color: var(--text-sub); font-weight: 600; padding: 10px; border-bottom: 1px solid #334155; text-transform: uppercase; font-size: 11px; }
+        td { padding: 12px 10px; border-bottom: 1px solid #1e293b; color: #e2e8f0; }
+        tr:hover { background: #334155; }
+
+        .tag-stockout { background: rgba(239, 68, 68, 0.2); color: #f87171; padding: 4px 8px; border-radius: 6px; font-weight: 600; font-size: 12px; }
+        .tag-tier1 { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; padding: 4px 8px; border-radius: 6px; font-weight: 600; font-size: 12px; }
+        .tag-tier2 { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; padding: 4px 8px; border-radius: 6px; font-weight: 600; font-size: 12px; }
+        .tag-sla-met { color: #34d399; font-weight: 600; }
+        .tag-sla-breach { color: #f87171; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="top-navbar">
+        <div class="logo-area">
+            <h1>Supply Chain Analytics Portfolio | Farhan Ahmed</h1>
+            <p>End-to-End Value Chain Intelligence: Procurement (Upstream) ➔ Inventory (Operations) ➔ Logistics (Downstream)</p>
+        </div>
+        <div class="portfolio-badge">LIVE INTERACTIVE SHOWCASE</div>
+    </div>
+
+    <!-- Navigation Tabs for all 3 projects -->
+    <div class="tabs-bar">
+        <button class="tab-btn active" onclick="switchTab('p1')">📦 Project 1: Inventory Optimization</button>
+        <button class="tab-btn" onclick="switchTab('p2')">🤝 Project 2: Supplier Scorecard & Spend</button>
+        <button class="tab-btn" onclick="switchTab('p3')">🚚 Project 3: Logistics & Freight Tracking</button>
+    </div>
+
+    <!-- PROJECT 1 VIEW -->
+    <div id="p1" class="project-view active">
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Total Inventory Valuation</div>
+                <div class="kpi-value" style="color:#3b82f6;">$361.9K</div>
+                <div class="kpi-sub" style="color:#94a3b8;">48 SKUs across 3 Hubs</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Annual Carrying Cost</div>
+                <div class="kpi-value" style="color:#f59e0b;">$72.3K</div>
+                <div class="kpi-sub" style="color:#94a3b8;">20% Holding Cost Rate</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Stockout Rate</div>
+                <div class="kpi-value" style="color:#ef4444;">5.6%</div>
+                <div class="kpi-sub" style="color:#ef4444;">8 SKUs at Zero Stock</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Reorder Needed</div>
+                <div class="kpi-value" style="color:#f59e0b;">38 SKUs</div>
+                <div class="kpi-sub" style="color:#f59e0b;">Below Reorder Point (ROP)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Inventory Turnover</div>
+                <div class="kpi-value" style="color:#10b981;">4.8x</div>
+                <div class="kpi-sub" style="color:#10b981;">Days Sales of Inventory: 76.0</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-box">
+                <h3>Inventory Valuation by Product Category ($ USD)</h3>
+                <canvas id="p1_catChart" height="220"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>Stock Health Distribution (Pareto & Buffer Tiers)</h3>
+                <canvas id="p1_healthChart" height="220"></canvas>
+            </div>
+        </div>
+
+        <div class="table-box">
+            <h3>🚨 Critical Replenishment Recommendations (Order Generated via SQL ROP Model)</h3>
+            <table>
+                <thead>
+                    <tr><th>Warehouse</th><th>Product Name</th><th>Category</th><th>Available Stock</th><th>Safety Stock</th><th>ROP</th><th>Recommended Order</th><th>Est. Cost</th><th>Action Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Chicago Hub</td><td><strong>Solenoid Valve 24V DC</strong></td><td>Industrial</td><td>0</td><td>35</td><td>145</td><td><strong>287 units</strong></td><td>$14,350.00</td><td><span class="tag-stockout">Stockout</span></td></tr>
+                    <tr><td>Newark Depot</td><td><strong>Oxygen Sensor O2 4-Wire</strong></td><td>Automotive</td><td>0</td><td>42</td><td>152</td><td><strong>301 units</strong></td><td>$13,545.00</td><td><span class="tag-stockout">Stockout</span></td></tr>
+                    <tr><td>Reno Center</td><td><strong>Roller Chain 10ft #40</strong></td><td>Industrial</td><td>0</td><td>14</td><td>31</td><td><strong>62 units</strong></td><td>$2,170.00</td><td><span class="tag-stockout">Stockout</span></td></tr>
+                    <tr><td>Newark Depot</td><td><strong>High-Speed USB-C Hub</strong></td><td>Electronics</td><td>0</td><td>16</td><td>36</td><td><strong>72 units</strong></td><td>$1,584.00</td><td><span class="tag-stockout">Stockout</span></td></tr>
+                    <tr><td>Chicago Hub</td><td><strong>Spring Pin Assortment</strong></td><td>Fasteners</td><td>0</td><td>18</td><td>33</td><td><strong>66 units</strong></td><td>$924.00</td><td><span class="tag-stockout">Stockout</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PROJECT 2 VIEW -->
+    <div id="p2" class="project-view">
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Procurement Spend</div>
+                <div class="kpi-value" style="color:#8b5cf6;">$32.8M</div>
+                <div class="kpi-sub" style="color:#94a3b8;">15 International Vendors</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Total Purchase Orders</div>
+                <div class="kpi-value">2,027 POs</div>
+                <div class="kpi-sub" style="color:#94a3b8;">Annual Sourcing Volume</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">On-Time In-Full (OTIF)</div>
+                <div class="kpi-value" style="color:#f59e0b;">82.4%</div>
+                <div class="kpi-sub" style="color:#ef4444;">Target Benchmark: 90.0%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Quality Acceptance</div>
+                <div class="kpi-value" style="color:#10b981;">98.4%</div>
+                <div class="kpi-sub" style="color:#10b981;">Avg Defect Rate: 1.6%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">PPV Cost Leakage</div>
+                <div class="kpi-value" style="color:#ef4444;">+$1.05M</div>
+                <div class="kpi-sub" style="color:#ef4444;">Off-Contract Price Creep</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-box">
+                <h3>Annual Spend by Vendor Tier ($ USD)</h3>
+                <canvas id="p2_spendChart" height="220"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>OTIF Delivery Performance vs 90% SLA Target</h3>
+                <canvas id="p2_vendorChart" height="220"></canvas>
+            </div>
+        </div>
+
+        <div class="table-box">
+            <h3>📋 Strategic Supplier Performance Ranking Matrix</h3>
+            <table>
+                <thead>
+                    <tr><th>Supplier Name</th><th>Country</th><th>Category</th><th>Orders</th><th>Annual Spend</th><th>OTIF Rate</th><th>Defect %</th><th>PPV Leakage</th><th>Partner Tier</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Zurich Precision Sensors</strong></td><td>Switzerland</td><td>Sensors</td><td>156</td><td>$4,258,313</td><td style="color:#10b981;font-weight:700;">89.7%</td><td>0.25%</td><td>+$120.9K</td><td><span class="tag-tier1">Strategic (Tier 1)</span></td></tr>
+                    <tr><td><strong>Bavarian Motor Parts</strong></td><td>Germany</td><td>Automotive</td><td>104</td><td>$4,601,084</td><td style="color:#10b981;font-weight:700;">85.6%</td><td>0.65%</td><td>+$110.8K</td><td><span class="tag-tier1">Strategic (Tier 1)</span></td></tr>
+                    <tr><td><strong>Bologna Pneumatics</strong></td><td>Italy</td><td>Pneumatics</td><td>120</td><td>$3,692,232</td><td style="color:#10b981;font-weight:700;">87.5%</td><td>1.42%</td><td>+$77.5K</td><td><span class="tag-tier2">Preferred (Tier 2)</span></td></tr>
+                    <tr><td><strong>Nordic Fluid Dynamics</strong></td><td>Sweden</td><td>Hydraulics</td><td>146</td><td>$6,967,618</td><td style="color:#f59e0b;font-weight:700;">78.1%</td><td>1.24%</td><td>+$175.0K</td><td><span class="tag-tier2">Preferred (Tier 2)</span></td></tr>
+                    <tr><td><strong>Midwest Steel & Alloy</strong></td><td>USA</td><td>Metals</td><td>142</td><td>$5,127,279</td><td style="color:#ef4444;font-weight:700;">75.4%</td><td>2.65%</td><td>+$114.6K</td><td><span class="tag-stockout">Watchlist (Re-negotiate)</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PROJECT 3 VIEW -->
+    <div id="p3" class="project-view">
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Freight Transportation Spend</div>
+                <div class="kpi-value" style="color:#0284c7;">$10.8M</div>
+                <div class="kpi-sub" style="color:#94a3b8;">12 Major Interstate Lanes</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Total Dispatches</div>
+                <div class="kpi-value">4,017 Shipments</div>
+                <div class="kpi-sub" style="color:#94a3b8;">Air, Road FTL/LTL, Intermodal</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">On-Time Delivery (OTD)</div>
+                <div class="kpi-value" style="color:#f59e0b;">87.7%</div>
+                <div class="kpi-sub" style="color:#ef4444;">Contract SLA Goal: 92.0%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Avg Delay Duration</div>
+                <div class="kpi-value" style="color:#10b981;">0.25 Days</div>
+                <div class="kpi-sub" style="color:#10b981;">Fast Transit Recovery</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">Expedited Freight Premium</div>
+                <div class="kpi-value" style="color:#ef4444;">$1.4M</div>
+                <div class="kpi-sub" style="color:#ef4444;">Avoidable Emergency Shipping</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-box">
+                <h3>Carrier On-Time Delivery % vs Contract Benchmark</h3>
+                <canvas id="p3_carrierChart" height="220"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>Delay Root-Cause Pareto Distribution</h3>
+                <canvas id="p3_paretoChart" height="220"></canvas>
+            </div>
+        </div>
+
+        <div class="table-box">
+            <h3>🚚 Logistics Carrier Performance Scorecard</h3>
+            <table>
+                <thead>
+                    <tr><th>Carrier Partner</th><th>Mode</th><th>Shipments</th><th>Freight Spend</th><th>Actual OTD</th><th>Contract SLA</th><th>SLA Gap</th><th>Avg Delay</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>DHL Global Forwarding</strong></td><td>Air Expedited</td><td>656</td><td>$4,065,314</td><td class="tag-sla-met">92.4%</td><td>96.0%</td><td class="tag-sla-breach">-3.6%</td><td>0.13 days</td></tr>
+                    <tr><td><strong>UPS Supply Chain</strong></td><td>Road LTL</td><td>677</td><td>$1,686,362</td><td class="tag-sla-met">89.8%</td><td>93.0%</td><td class="tag-sla-breach">-3.2%</td><td>0.21 days</td></tr>
+                    <tr><td><strong>FedEx Freight</strong></td><td>Road LTL</td><td>697</td><td>$1,666,705</td><td class="tag-sla-met">88.5%</td><td>94.0%</td><td class="tag-sla-breach">-5.5%</td><td>0.24 days</td></tr>
+                    <tr><td><strong>Schneider National</strong></td><td>Road FTL</td><td>623</td><td>$1,340,466</td><td class="tag-sla-met">87.0%</td><td>90.0%</td><td class="tag-sla-breach">-3.0%</td><td>0.32 days</td></tr>
+                    <tr><td><strong>Swift Transportation</strong></td><td>Road FTL</td><td>620</td><td>$1,214,107</td><td class="tag-sla-breach">84.7%</td><td>91.0%</td><td class="tag-sla-breach">-6.3%</td><td>0.29 days</td></tr>
+                    <tr><td><strong>Maersk Intermodal</strong></td><td>Ocean / Rail</td><td>744</td><td>$913,442</td><td class="tag-sla-breach">83.2%</td><td>86.0%</td><td class="tag-sla-breach">-2.8%</td><td>0.34 days</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.project-view').forEach(p => p.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // P1 Charts
+        new Chart(document.getElementById('p1_catChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Industrial', 'Automotive', 'Electronics', 'Fasteners'],
+                datasets: [{ data: [167937, 101802, 70660, 21520], backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'], borderRadius: 6 }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8', callback: v => '$' + (v/1000) + 'k' }, grid: { color: '#334155' } } } }
+        });
+
+        new Chart(document.getElementById('p1_healthChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Healthy (45.1%)', 'Reorder (26.4%)', 'Overstocked (18.1%)', 'Stockout (5.6%)', 'Critical (4.9%)'],
+                datasets: [{ data: [65, 38, 26, 8, 7], backgroundColor: ['#10b981', '#f59e0b', '#3b82f6', '#ef4444', '#f97316'], borderColor: '#1e293b', borderWidth: 2 }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'right', labels: { color: '#e2e8f0' } } } }
+        });
+
+        // P2 Charts
+        new Chart(document.getElementById('p2_spendChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Preferred ($18.4M)', 'Strategic ($14.4M)', 'Operational ($10.0M)'],
+                datasets: [{ data: [18406834, 14408798, 10020281], backgroundColor: ['#10b981', '#8b5cf6', '#f59e0b'], borderRadius: 6 }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#94a3b8' } }, y: { ticks: { color: '#94a3b8', callback: v => '$' + (v/1000000) + 'M' }, grid: { color: '#334155' } } } }
+        });
+
+        new Chart(document.getElementById('p2_vendorChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Zurich Sensors', 'Bavarian Motors', 'Bologna Pneum.', 'Nordic Fluid', 'Midwest Steel'],
+                datasets: [{ label: 'OTIF %', data: [89.7, 85.6, 87.5, 78.1, 75.4], backgroundColor: '#8b5cf6', borderRadius: 6 },
+                           { label: 'Target 90%', data: [90, 90, 90, 90, 90], type: 'line', borderColor: '#ef4444', borderDash: [5, 5], pointRadius: 0 }]
+            },
+            options: { responsive: true, scales: { x: { ticks: { color: '#94a3b8' } }, y: { min: 60, max: 100, ticks: { color: '#94a3b8' }, grid: { color: '#334155' } } }, plugins: { legend: { labels: { color: '#94a3b8' } } } }
+        });
+
+        // P3 Charts
+        new Chart(document.getElementById('p3_carrierChart'), {
+            type: 'bar',
+            data: {
+                labels: ['DHL Air', 'UPS LTL', 'FedEx LTL', 'Schneider FTL', 'Swift FTL', 'Maersk Rail'],
+                datasets: [{ data: [92.4, 89.8, 88.5, 87.0, 84.7, 83.2], backgroundColor: '#0284c7', borderRadius: 6 }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#94a3b8' } }, y: { min: 75, max: 100, ticks: { color: '#94a3b8' }, grid: { color: '#334155' } } } }
+        });
+
+        new Chart(document.getElementById('p3_paretoChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Weather (29.6%)', 'Port Delay (24.2%)', 'Driver Shortage (21.0%)', 'Bottlenecks (12.6%)', 'Mechanical (6.6%)', 'Docs (6.0%)'],
+                datasets: [{ data: [148, 121, 105, 63, 33, 30], backgroundColor: ['#0284c7', '#38bdf8', '#f59e0b', '#f97316', '#ef4444', '#64748b'], borderColor: '#1e293b', borderWidth: 2 }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'right', labels: { color: '#e2e8f0' } } } }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+Supplier_ID,Supplier_Name,Country,Category,Payment_Terms,Vendor_Tier,Target_OTD,Defect_Baseline
+SUP-101,Apex Precision Engineering,Germany,Industrial Components,Net 30,Strategic,0.94,0.015
+SUP-102,Shenzhen Micro Devices,China,Electronics & Sensors,Net 60,Preferred,0.88,0.028
+SUP-103,Kyoto Advanced Ceramics,Japan,Automotive Subsystems,Net 45,Strategic,0.97,0.008
+SUP-104,Detroit Fastener Works,USA,Fasteners & Hardware,Net 30,Preferred,0.92,0.012
+SUP-105,Nordic Fluid Dynamics,Sweden,Industrial Hydraulics,Net 45,Preferred,0.91,0.018
+SUP-106,Taiwan Semiconductor Supply,Taiwan,Electronics & Sensors,Net 60,Strategic,0.96,0.01
+SUP-107,Seoul Battery Solutions,South Korea,Electronics & Batteries,Net 45,Preferred,0.89,0.022
+SUP-108,Bavarian Motor Parts,Germany,Automotive Subsystems,Net 30,Strategic,0.95,0.011
+SUP-109,Global Rubber & Seals Ltd,Malaysia,Industrial Seals,Net 60,Operational,0.82,0.045
+SUP-110,Midwest Steel & Alloy,USA,Raw Metals & Fasteners,Net 30,Operational,0.84,0.038
+SUP-111,Zurich Precision Sensors,Switzerland,Electronics & Sensors,Net 30,Strategic,0.98,0.005
+SUP-112,Monterrey Wire & Cable,Mexico,Electrical Harnesses,Net 45,Operational,0.79,0.052
+SUP-113,Bologna Pneumatics,Italy,Industrial Pneumatics,Net 45,Preferred,0.9,0.02
+SUP-114,Ontario Die Casting,Canada,Automotive Castings,Net 30,Preferred,0.93,0.016
+SUP-115,Bangalore Embedded Labs,India,PCB & Controllers,Net 60,Operational,0.83,0.035
